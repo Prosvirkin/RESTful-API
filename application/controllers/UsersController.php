@@ -9,13 +9,14 @@ class Users extends Controller
 
     function index()
     {
-       $data = $this->model->getData();
-       echo json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $data = $this->model->getData();
+        echo json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-
-    function test()
+    function get($id)
     {
-        echo "test";
+        $user = $this->model->getUser($id);
+        echo json_encode($user, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+
 }

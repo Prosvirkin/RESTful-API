@@ -15,4 +15,15 @@ class usersModel extends Model
 
         return $arrData;
     }
+
+    public function getUser($id)
+    {
+        if($user = $this->mysqli->query("Select * from users WHERE id = $id")){
+            while($row = $user->fetch_array(MYSQLI_ASSOC)){
+                $arrUser[] = $row;
+            }
+            $user->close();
+        }
+        return $arrUser;
+    }
 }
