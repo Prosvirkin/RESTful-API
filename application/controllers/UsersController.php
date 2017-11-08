@@ -9,14 +9,26 @@ class Users extends Controller
 
     function index()
     {
-        $data = $this->model->getData();
+        $data = $this->model->getAll();
         echo json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-    function getUser($id)
+    function show($params)
     {
-        $user = $this->model->getUser($id);
+        $user = $this->model->getUser($params);
         echo json_encode($user, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+    function add($params){
+        $this->model->createUser($params);
+    }
+
+    function update($params){
+        $this->model->updateUser($params);
+    }
+
+    function delete($params){
+        $this->model->delete($params);
     }
 
 }
