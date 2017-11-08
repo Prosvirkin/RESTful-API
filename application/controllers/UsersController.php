@@ -13,7 +13,7 @@ class Users extends Controller
         echo json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-    function get($id)
+    function getUser($id)
     {
         $user = $this->model->getUser($id);
         echo json_encode($user, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);

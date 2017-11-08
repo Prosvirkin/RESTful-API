@@ -24,6 +24,11 @@ class usersModel extends Model
             }
             $user->close();
         }
-        return $arrUser;
+        if(empty($arrUser)){
+            Route::Error404();
+        } else {
+            return $arrUser;
+        }
+
     }
 }

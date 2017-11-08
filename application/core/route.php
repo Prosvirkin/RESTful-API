@@ -9,7 +9,7 @@ class Route
         $actionName = "index";
 
         $routes = explode("/", trim($_SERVER["REQUEST_URI"], "/"));
-
+        print_r($_GET);
         // Controller
         if (!empty($routes[0])) {
             $controllerName = ucfirst($routes[0]);
@@ -34,28 +34,28 @@ class Route
             Route::Error404();
         }
 
-//        if (!empty($routes[2])) {
-//         $param = $routes[2];
-//        }
-
         if (!empty($routes[2])) {
-            $keys = $values = [];
-            for ($i = 2; $i < count($routes); $i++) {
-                if ($i % 2 == 0) {
-                    $keys[] = $routes[$i];
-                } else {
-                    $values[] = $routes[$i];
-                }
-            }
-            $params = array_combine($keys, $values);
+         $param = $routes[2];
         }
+
+//        if (!empty($routes[2])) {
+//            $keys = $values = [];
+//            for ($i = 2; $i < count($routes); $i++) {
+//                if ($i % 2 == 0) {
+//                    $keys[] = $routes[$i];
+//                } else {
+//                    $values[] = $routes[$i];
+//                }
+//            }
+//            $params = array_combine($keys, $values);
+//        }
 
 
         $controller = new $controllerName;
         $action = $actionName;
 
         if (method_exists($controller, $action)) {
-            $controller->$action($values[0]);
+            $controller->$action($param);
         } else {
             Route::Error404();
         }
